@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exibir Foto do aluno</title>
+    <style>
+        /* Estilos gerais */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            text-align: center;
+            background-color: #87b49c;
+        }
+
+        /* Estilo para o formulário */
+        #formNome {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #0b0707;
+            border-radius: 8px;
+        }
+
+        /* Estilo para o campo de entrada */
+        #nomeUsuario {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        /* Estilo para o botão de enviar */
+        #formNome button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4caf72;
+            color: rgb(18, 14, 14);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* Estilo para a div que contém a foto do usuário */
+        #fotoUsuario {
+            display: none; /* inicialmente oculta */
+            margin-top: 20px;
+        }
+
+        /* Estilo para a imagem do usuário */
+        #imagemUsuario {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Insira o nome do aluno (a):</h2>
+
+<!-- Formulário para inserir o nome -->
+<form id="formNome">
+    <input type="text" id="nomeUsuario" placeholder="Seu nome..." required>
+    <button type="submit">Enviar</button>
+</form>
+
+<!-- Div para exibir a foto do usuário -->
+<div id="fotoUsuario">
+    <h3>Foto de <span id="nomeExibido"></span>:</h3>
+    <img id="imagemUsuario" src="" alt="Foto do Usuário">
+</div>
+
+<script>
+    // Lista de nomes de usuário e URLs de imagens correspondentes
+    const fotosUsuarios = {
+        "mica": "img/mica.png.jpeg",
+        "Mica": "img/mica.png.jpeg",
+        "Micaelly": "img/mica.png.jpeg",
+        "micaelly": "img/mica.png.jpeg",
+        "sala 16": "img/mica.png.jpeg",
+        "Sala 16": "img/mica.png.jpeg",
+
+        "Josué": "img/josue.png.jpeg",
+        "josué": "img/josue.png.jpeg",
+        "Josue": "img/josue.png.jpeg",
+        "josue": "img/josue.png.jpeg",
+        "Sala 7": "img/josue.png.jpeg",
+        "sala 7": "img/josue.png.jpeg",
+
+        "Vitor": "img/vitor.png.jpeg",
+        "vitor": "img/vitor.png.jpeg",
+        "Victor": "img/vitor.png.jpeg",
+        "Sala 14": "img/vitor.png.jpeg",
+        "sala 14": "img/vitor.png.jpeg",
+
+        "Bryan": "img/brian.png.jpeg",
+        "bryan": "img/brian.png.jpeg",
+        "Brian": "img/brian.png.jpeg",
+        "brian": "img/brian.png.jpeg",
+        "Sala 10": "img/sala.png",
+        "sala 10": "img/sala.png",
+        "sala10": "img/sala.png",
+        "Sala10": "img/sala.png",
+
+        "Rafaela": "img/rafa.png.jpeg",
+        "rafaela": "img/rafa.png.jpeg",
+        "Rafa": "img/rafa.png.jpeg",
+        "rafa": "img/rafa.png.jpeg",
+        "Sala 10": "img/sala.png",
+        "sala 10": "img/sala.png",
+        "sala10": "img/sala.png",
+        "Sala10": "img/sala.png",
+
+        "Gael": "img/Gael.png.jpeg",
+        "gael": "img/Gael.png.jpeg",
+        "sala 3": "img/Gael.png.jpeg",
+        "sala 3": "img/Gael.png.jpeg",
+        
+        "Enzo": "img/enzo.png.jpeg",
+        "enzo": "img/enzo.png.jpeg",
+        "sala 15": "img/enzo.png.jpeg",
+        "sala 15": "img/enzo.png.jpeg",
+
+        "Autorização": "img/autorização.jpeg",
+        "autorização": "img/autorização.jpeg",
+        "Autorizacao": "img/autorização.jpeg",
+        "autorizacao": "img/autorização.jpeg",
+
+        // Adicione mais nomes e URLs de imagens conforme necessário
+    };
+
+    // Função para exibir a foto do usuário
+    function exibirFoto(nome) {
+        const foto = document.getElementById("fotoUsuario");
+        const nomeExibido = document.getElementById("nomeExibido");
+        const imagemUsuario = document.getElementById("imagemUsuario");
+
+        // Verifica se o nome existe na lista de fotosUsuarios
+        if (nome in fotosUsuarios) {
+            nomeExibido.textContent = nome;
+            imagemUsuario.src = fotosUsuarios[nome];
+            foto.style.display = "block"; // Exibe a div com a foto
+        } else {
+            alert("Usuário não encontrado!");
+        }
+    }
+
+    // Captura o envio do formulário
+    document.getElementById("formNome").addEventListener("submit", function(event) {
+        event.preventDefault(); // Impede o envio padrão do formulário
+
+        const nomeUsuario = document.getElementById("nomeUsuario").value;
+        exibirFoto(nomeUsuario);
+    });
+</script>
+
+</body>
+</html>
