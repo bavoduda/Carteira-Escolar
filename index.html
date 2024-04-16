@@ -55,6 +55,12 @@
             height: auto;
             border-radius: 8px;
         }
+
+        /* Estilo para mensagem de erro */
+        #erro {
+            color: red;
+            margin-top: 10px;
+        }
     </style>
 </head>
 <body>
@@ -65,6 +71,7 @@
 <form id="formNome">
     <input type="text" id="nomeUsuario" placeholder="Seu nome..." required>
     <button type="submit">Enviar</button>
+    <div id="erro"></div>
 </form>
 
 <!-- Div para exibir a foto do usuário -->
@@ -116,20 +123,24 @@
 
         "Gael": "img/Gael.png.jpeg",
         "gael": "img/Gael.png.jpeg",
-        "sala 3": "img/Gael.png.jpeg",
+        "Sala 3": "img/Gael.png.jpeg",
         "sala 3": "img/Gael.png.jpeg",
         
         "Enzo": "img/enzo.png.jpeg",
         "enzo": "img/enzo.png.jpeg",
+        "Sala 15": "img/enzo.png.jpeg",
         "sala 15": "img/enzo.png.jpeg",
-        "sala 15": "img/enzo.png.jpeg",
+
+        " Gael Borges": "img/Borges.jpeg",
+        "borges": "img/Borges.jpeg",
+        "Borges": "img/Borges.jpeg",
+        "sala 4": "img/Borges.jpeg",
+        "Sala 4": "img/Borges.jpeg",
 
         "Autorização": "img/autorização.jpeg",
         "autorização": "img/autorização.jpeg",
         "Autorizacao": "img/autorização.jpeg",
         "autorizacao": "img/autorização.jpeg",
-
-        // Adicione mais nomes e URLs de imagens conforme necessário
     };
 
     // Função para exibir a foto do usuário
@@ -137,14 +148,27 @@
         const foto = document.getElementById("fotoUsuario");
         const nomeExibido = document.getElementById("nomeExibido");
         const imagemUsuario = document.getElementById("imagemUsuario");
+        const erro = document.getElementById("erro");
+
+        // Verifica se o nome está vazio ou contém apenas espaços
+        if (nome.trim() === "") {
+            erro.textContent = "Digite um nome válido.";
+            foto.style.display = "none"; // Oculta a div com a foto
+            return;
+        }
+
+        // Converte o nome para minúsculas antes de comparar
+        nome = nome.toLowerCase();
 
         // Verifica se o nome existe na lista de fotosUsuarios
         if (nome in fotosUsuarios) {
             nomeExibido.textContent = nome;
             imagemUsuario.src = fotosUsuarios[nome];
             foto.style.display = "block"; // Exibe a div com a foto
+            erro.textContent = ""; // Limpa a mensagem de erro
         } else {
-            alert("Usuário não encontrado!");
+            erro.textContent = "Usuário não encontrado!";
+            foto.style.display = "none"; // Oculta a div com a foto
         }
     }
 
